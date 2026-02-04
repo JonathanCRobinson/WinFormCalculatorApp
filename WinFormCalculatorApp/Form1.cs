@@ -78,7 +78,8 @@ namespace WinFormCalculatorApp
             {
                 inputNumber("0");
             }
-            else if (e.KeyCode == Keys.NumPad1 || e.KeyCode == Keys.D1){
+            else if (e.KeyCode == Keys.NumPad1 || e.KeyCode == Keys.D1)
+            {
                 inputNumber("1");
             }
             else if (e.KeyCode == Keys.NumPad2 || e.KeyCode == Keys.D2)
