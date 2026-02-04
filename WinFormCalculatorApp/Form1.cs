@@ -1,15 +1,16 @@
-using System.Runtime.CompilerServices;
-
 namespace WinFormCalculatorApp
 {
-    public partial class form1 : Form
+    public partial class Form1 : Form
     {
-        public form1()
+        double firstNumber, secondNumber, result;
+        string operation = " ";
+
+        public Form1()
         {
             InitializeComponent();
         }
 
-        private void inputNumber(string c)
+        private void InputNumber(string c)
         {
             if (textBoxCalculation.Text == "0" && textBoxCalculation.Text != null)
             {
@@ -21,128 +22,253 @@ namespace WinFormCalculatorApp
             }
         }
 
-        private void n1_Click(object sender, EventArgs e)
+        private void N1_Click(object sender, EventArgs e)
         {
-            inputNumber("1");
+            InputNumber("1");
         }
 
-        private void n2_Click(object sender, EventArgs e)
+        private void N2_Click(object sender, EventArgs e)
         {
-            inputNumber("2");
+            InputNumber("2");
         }
 
-        private void n3_Click(object sender, EventArgs e)
+        private void N3_Click(object sender, EventArgs e)
         {
-            inputNumber("3");
+            InputNumber("3");
         }
 
-        private void n4_Click(object sender, EventArgs e)
+        private void N4_Click(object sender, EventArgs e)
         {
-            inputNumber("4");
+            InputNumber("4");
         }
 
-        private void n5_Click(object sender, EventArgs e)
+        private void N5_Click(object sender, EventArgs e)
         {
-            inputNumber("5");
+            InputNumber("5");
         }
 
-        private void n6_Click(object sender, EventArgs e)
+        private void N6_Click(object sender, EventArgs e)
         {
-            inputNumber("6");
+            InputNumber("6");
         }
 
-        private void n7_Click(object sender, EventArgs e)
+        private void N7_Click(object sender, EventArgs e)
         {
-            inputNumber("7");
+            InputNumber("7");
         }
 
-        private void n8_Click(object sender, EventArgs e)
+        private void N8_Click(object sender, EventArgs e)
         {
-            inputNumber("8");
+            InputNumber("8");
         }
 
-        private void n9_Click(object sender, EventArgs e)
+        private void N9_Click(object sender, EventArgs e)
         {
-            inputNumber("9");
+            InputNumber("9");
         }
 
-        private void n0_Click(object sender, EventArgs e)
+        private void N0_Click(object sender, EventArgs e)
         {
-            inputNumber("0");
+            InputNumber("0");
+        }
+
+        private void Decimal_Click(object sender, EventArgs e)
+        {
+            InputNumber(".");
+        }
+
+        private void Mult_Click(object sender, EventArgs e)
+        {
+            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
+            textBoxCalculation.Text = "0";
+            operation = "*";
+        }
+
+        private void Divide_Click(object sender, EventArgs e)
+        {
+            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
+            textBoxCalculation.Text = "0";
+            operation = "/";
+        }
+
+        private void Sub_Click(object sender, EventArgs e)
+        {
+            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
+            textBoxCalculation.Text = "0";
+            operation = "-";
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
+            textBoxCalculation.Text = "0";
+            operation = "+";
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            firstNumber = 0;
+            secondNumber = 0;
+            result = 0;
+            operation = " ";
+            textBoxCalculation.Text = "0";
+        }
+
+        private void Equal_Click(object sender, EventArgs e)
+        {
+            secondNumber = Convert.ToDouble(textBoxCalculation.Text);
+
+
+            if (operation == "+")
+            {
+                result = (firstNumber + secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+                operation = " ";
+            }
+            if (operation == "-")
+            {
+                result = (firstNumber - secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+                operation = " ";
+            }
+            if (operation == "*")
+            {
+                result = (firstNumber * secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+                operation = " ";
+            }
+            if (operation == "/")
+            {
+                if (secondNumber == 0)
+                {
+                    MessageBox.Show("ERROR: Cannot divide by zero", "ERROR");
+                }
+                else
+                {
+                    result = (firstNumber / secondNumber);
+                    textBoxCalculation.Text = Convert.ToString(result);
+                    firstNumber = result;
+                    operation = " ";
+                }
+            }
+
         }
 
         private void KeyboardInput(object sender, KeyEventArgs e)
         {
-            
-            if (e.KeyCode == Keys.NumPad0 || e.KeyCode == Keys.D0)
+
+            if (e.KeyCode != Keys.NumPad0 && e.KeyCode != Keys.D0)
             {
-                inputNumber("0");
+                if (e.KeyCode == Keys.NumPad1 || e.KeyCode == Keys.D1)
+                {
+                    InputNumber("1");
+                }
+                else if (e.KeyCode == Keys.NumPad2 || e.KeyCode == Keys.D2)
+                {
+                    InputNumber("2");
+                }
+                else if (e.KeyCode == Keys.NumPad3 || e.KeyCode == Keys.D3)
+                {
+                    InputNumber("3");
+                }
+                else if (e.KeyCode == Keys.NumPad4 || e.KeyCode == Keys.D4)
+                {
+                    InputNumber("4");
+                }
+                else if (e.KeyCode == Keys.NumPad5 || e.KeyCode == Keys.D5)
+                {
+                    InputNumber("5");
+                }
+                else if (e.KeyCode == Keys.NumPad6 || e.KeyCode == Keys.D6)
+                {
+                    InputNumber("6");
+                }
+                else if (e.KeyCode == Keys.NumPad7 || e.KeyCode == Keys.D7)
+                {
+                    InputNumber("7");
+                }
+                else if (e.KeyCode == Keys.NumPad8 || e.KeyCode == Keys.D8)
+                {
+                    InputNumber("8");
+                }
+                else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
+                {
+                    InputNumber("9");
+                }
+                else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
+                {
+                    InputNumber("9");
+                }
+                else if (e.KeyCode == Keys.Multiply || e.KeyCode == Keys.D9)
+                {
+                    InputNumber("*");
+                }
+                else if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus)
+                {
+                    InputNumber("+");
+                }
+                else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus)
+                {
+                    InputNumber("-");
+                }
+                else if (e.KeyCode == Keys.Decimal || e.KeyCode == Keys.OemPeriod)
+                {
+                    InputNumber(".");
+                }
+                else if (e.KeyCode == Keys.Divide)
+                {
+                    InputNumber("/");
+                }
             }
-            else if (e.KeyCode == Keys.NumPad1 || e.KeyCode == Keys.D1)
+            else
             {
-                inputNumber("1");
-            }
-            else if (e.KeyCode == Keys.NumPad2 || e.KeyCode == Keys.D2)
-            {
-                inputNumber("2");
-            }
-            else if (e.KeyCode == Keys.NumPad3 || e.KeyCode == Keys.D3)
-            {
-                inputNumber("3");
-            }
-            else if (e.KeyCode == Keys.NumPad4 || e.KeyCode == Keys.D4)
-            {
-                inputNumber("4");
-            }
-            else if (e.KeyCode == Keys.NumPad5 || e.KeyCode == Keys.D5)
-            {
-                inputNumber("5");
-            }
-            else if (e.KeyCode == Keys.NumPad6 || e.KeyCode == Keys.D6)
-            {
-                inputNumber("6");
-            }
-            else if (e.KeyCode == Keys.NumPad7 || e.KeyCode == Keys.D7)
-            {
-                inputNumber("7");
-            }
-            else if (e.KeyCode == Keys.NumPad8 || e.KeyCode == Keys.D8)
-            {
-                inputNumber("8");
-            }
-            else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
-            {
-                inputNumber("9");
-            }
-            else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
-            {
-                inputNumber("9");
-            }
-            else if (e.KeyCode == Keys.Multiply || e.KeyCode == Keys.D9)
-            {
-                inputNumber("*");
-            }
-            else if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus)
-            {
-                inputNumber("+");
-            }
-            else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus)
-            {
-                inputNumber("-");
-            }
-            else if (e.KeyCode == Keys.Decimal || e.KeyCode == Keys.OemPeriod)
-            {
-                inputNumber(".");
-            }
-            else if (e.KeyCode == Keys.Divide)
-            {
-                inputNumber("/");
+                InputNumber("0");
             }
         }
 
-        private void SolveEquation(int inputNumber)
+      
+
+        /*private void SolveEquation(double InputNumber)
         {
-            double firstNumber, secondNumber, result;
-        }
+            secondNumber = Convert.ToDouble(textBoxCalculation.Text);
+
+
+            if (operation == "+")
+            {
+                result = (firstNumber + secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+            }
+            if (operation == "-")
+            {
+                result = (firstNumber - secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+            }
+            if (operation == "*")
+            {
+                result = (firstNumber * secondNumber);
+                textBoxCalculation.Text = Convert.ToString(result);
+                firstNumber = result;
+            }
+            if (operation == "/")
+            {
+                if (secondNumber == 0)
+                {
+                    MessageBox.Show("ERROR: Cannot divide by zero", "ERROR");
+                }
+                else
+                {
+                    result = (firstNumber / secondNumber);
+                    textBoxCalculation.Text = Convert.ToString(result);
+                    firstNumber = result;
+                }
+            }
+        }*/
+
+
     }
 }
