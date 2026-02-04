@@ -1,9 +1,11 @@
+using System.Diagnostics.Eventing.Reader;
+
 namespace WinFormCalculatorApp
 {
     public partial class Form1 : Form
     {
         double firstNumber, secondNumber, result;
-        string operation = " ";
+        string operation = " ", charge = " ";
 
         public Form1()
         {
@@ -112,6 +114,24 @@ namespace WinFormCalculatorApp
             result = 0;
             operation = " ";
             textBoxCalculation.Text = "0";
+        }
+
+        private void PosNeg_Click(object sender, EventArgs e)
+        {
+            if (textBoxCalculation.Text != "0")
+            {
+                if (textBoxCalculation.Text.StartsWith('-'))
+                {
+                    charge = textBoxCalculation.Text;
+                    textBoxCalculation.Text = charge[1..];
+                }
+                else
+                {
+                    textBoxCalculation.Text = "-" + textBoxCalculation.Text;
+                }
+            }
+            else;
+            
         }
 
         private void Equal_Click(object sender, EventArgs e)
@@ -228,47 +248,5 @@ namespace WinFormCalculatorApp
                 InputNumber("0");
             }
         }
-
-      
-
-        /*private void SolveEquation(double InputNumber)
-        {
-            secondNumber = Convert.ToDouble(textBoxCalculation.Text);
-
-
-            if (operation == "+")
-            {
-                result = (firstNumber + secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-            }
-            if (operation == "-")
-            {
-                result = (firstNumber - secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-            }
-            if (operation == "*")
-            {
-                result = (firstNumber * secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-            }
-            if (operation == "/")
-            {
-                if (secondNumber == 0)
-                {
-                    MessageBox.Show("ERROR: Cannot divide by zero", "ERROR");
-                }
-                else
-                {
-                    result = (firstNumber / secondNumber);
-                    textBoxCalculation.Text = Convert.ToString(result);
-                    firstNumber = result;
-                }
-            }
-        }*/
-
-
     }
 }
