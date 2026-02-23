@@ -64,12 +64,12 @@
             textBoxCalculation.ReadOnly = true;
             textBoxCalculation.Size = new Size(417, 66);
             textBoxCalculation.TabIndex = 17;
+            textBoxCalculation.TabStop = false;
             textBoxCalculation.TextAlign = HorizontalAlignment.Right;
             // 
             // n1
             // 
             n1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n1.AutoEllipsis = true;
             n1.AutoSize = true;
             n1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n1.Font = new Font("Segoe UI", 25F);
@@ -81,13 +81,12 @@
             n1.TabIndex = 1;
             n1.Text = "1";
             n1.UseVisualStyleBackColor = true;
-            n1.Click += N1_Click;
-            n1.KeyDown += KeyboardInput;
+            n1.Click += Number_Click;
+            //n1.KeyDown += KeyboardInput;
             // 
             // n2
             // 
             n2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n2.AutoEllipsis = true;
             n2.AutoSize = true;
             n2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n2.Font = new Font("Segoe UI", 25F);
@@ -99,13 +98,12 @@
             n2.TabIndex = 2;
             n2.Text = "2";
             n2.UseVisualStyleBackColor = true;
-            n2.Click += N2_Click;
-            n2.KeyDown += KeyboardInput;
+            n2.Click += Number_Click;
+            //n2.KeyDown += KeyboardInput;
             // 
             // n3
             // 
             n3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n3.AutoEllipsis = true;
             n3.AutoSize = true;
             n3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n3.Font = new Font("Segoe UI", 25F);
@@ -117,13 +115,12 @@
             n3.TabIndex = 3;
             n3.Text = "3";
             n3.UseVisualStyleBackColor = true;
-            n3.Click += N3_Click;
-            n3.KeyDown += KeyboardInput;
+            n3.Click += Number_Click;
+            //n3.KeyDown += KeyboardInput;
             // 
             // n4
             // 
             n4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n4.AutoEllipsis = true;
             n4.AutoSize = true;
             n4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n4.Font = new Font("Segoe UI", 25F);
@@ -135,13 +132,12 @@
             n4.TabIndex = 4;
             n4.Text = "4";
             n4.UseVisualStyleBackColor = true;
-            n4.Click += N4_Click;
-            n4.KeyDown += KeyboardInput;
+            n4.Click += Number_Click;
+            //n4.KeyDown += KeyboardInput;
             // 
             // n5
             // 
             n5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n5.AutoEllipsis = true;
             n5.AutoSize = true;
             n5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n5.Font = new Font("Segoe UI", 25F);
@@ -153,13 +149,12 @@
             n5.TabIndex = 5;
             n5.Text = "5";
             n5.UseVisualStyleBackColor = true;
-            n5.Click += N5_Click;
-            n5.KeyDown += KeyboardInput;
+            n5.Click += Number_Click;
+            //n5.KeyDown += KeyboardInput;
             // 
             // n6
             // 
             n6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n6.AutoEllipsis = true;
             n6.AutoSize = true;
             n6.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n6.Font = new Font("Segoe UI", 25F);
@@ -171,13 +166,12 @@
             n6.TabIndex = 6;
             n6.Text = "6";
             n6.UseVisualStyleBackColor = true;
-            n6.Click += N6_Click;
-            n6.KeyDown += KeyboardInput;
+            n6.Click += Number_Click;
+            //n6.KeyDown += KeyboardInput;
             // 
             // n7
             // 
             n7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n7.AutoEllipsis = true;
             n7.AutoSize = true;
             n7.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n7.Font = new Font("Segoe UI", 25F);
@@ -189,13 +183,12 @@
             n7.TabIndex = 7;
             n7.Text = "7";
             n7.UseVisualStyleBackColor = true;
-            n7.Click += N7_Click;
-            n7.KeyDown += KeyboardInput;
+            n7.Click += Number_Click;
+            //n7.KeyDown += KeyboardInput;
             // 
             // n8
             // 
             n8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n8.AutoEllipsis = true;
             n8.AutoSize = true;
             n8.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n8.Font = new Font("Segoe UI", 25F);
@@ -207,13 +200,12 @@
             n8.TabIndex = 8;
             n8.Text = "8";
             n8.UseVisualStyleBackColor = true;
-            n8.Click += N8_Click;
-            n8.KeyDown += KeyboardInput;
+            n8.Click += Number_Click;
+            //n8.KeyDown += KeyboardInput;
             // 
             // n9
             // 
             n9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n9.AutoEllipsis = true;
             n9.AutoSize = true;
             n9.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n9.Font = new Font("Segoe UI", 25F);
@@ -225,13 +217,12 @@
             n9.TabIndex = 9;
             n9.Text = "9";
             n9.UseVisualStyleBackColor = true;
-            n9.Click += N9_Click;
-            n9.KeyDown += KeyboardInput;
+            n9.Click += Number_Click;
+            //n9.KeyDown += KeyboardInput;
             // 
             // n0
             // 
             n0.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            n0.AutoEllipsis = true;
             n0.AutoSize = true;
             n0.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             n0.Font = new Font("Segoe UI", 25F);
@@ -243,13 +234,11 @@
             n0.TabIndex = 10;
             n0.Text = "0";
             n0.UseVisualStyleBackColor = true;
-            n0.Click += N0_Click;
-            n0.KeyDown += KeyboardInput;
+            n0.Click += Number_Click;
             // 
             // buttonAdd
             // 
             buttonAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonAdd.AutoEllipsis = true;
             buttonAdd.AutoSize = true;
             buttonAdd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonAdd.Font = new Font("Segoe UI", 25F);
@@ -266,7 +255,6 @@
             // buttonSub
             // 
             buttonSub.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonSub.AutoEllipsis = true;
             buttonSub.AutoSize = true;
             buttonSub.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonSub.Font = new Font("Segoe UI", 25F);
@@ -283,7 +271,6 @@
             // buttonMult
             // 
             buttonMult.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonMult.AutoEllipsis = true;
             buttonMult.AutoSize = true;
             buttonMult.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonMult.Font = new Font("Segoe UI", 25F);
@@ -300,7 +287,6 @@
             // buttonDecimal
             // 
             buttonDecimal.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonDecimal.AutoEllipsis = true;
             buttonDecimal.AutoSize = true;
             buttonDecimal.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonDecimal.Font = new Font("Segoe UI", 25F);
@@ -317,7 +303,6 @@
             // buttonClear
             // 
             buttonClear.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonClear.AutoEllipsis = true;
             buttonClear.AutoSize = true;
             buttonClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonClear.Font = new Font("Segoe UI", 18F);
@@ -334,7 +319,6 @@
             // buttonDivide
             // 
             buttonDivide.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonDivide.AutoEllipsis = true;
             buttonDivide.AutoSize = true;
             buttonDivide.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonDivide.Font = new Font("Segoe UI", 25F);
@@ -351,7 +335,6 @@
             // buttonEnter
             // 
             buttonEnter.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonEnter.AutoEllipsis = true;
             buttonEnter.AutoSize = true;
             buttonEnter.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonEnter.Font = new Font("Segoe UI", 25F);
@@ -368,7 +351,6 @@
             // buttonPosNeg
             // 
             buttonPosNeg.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonPosNeg.AutoEllipsis = true;
             buttonPosNeg.AutoSize = true;
             buttonPosNeg.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonPosNeg.Font = new Font("Segoe UI", 18F);
@@ -385,7 +367,6 @@
             // buttonBack
             // 
             buttonBack.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonBack.AutoEllipsis = true;
             buttonBack.AutoSize = true;
             buttonBack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonBack.Font = new Font("Segoe UI", 18F);

@@ -1,17 +1,106 @@
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics.Metrics;
+using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 
 namespace WinFormCalculatorApp
 {
     public partial class Form1 : Form
     {
         double firstNumber, secondNumber, result;
-        string operation = " ", charge = " ";
+        string operation = "", sign = "";
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            // 
+            // NUMBER KEYS
+            // 
+
+            // Numpad numbers (0-9)
+            if (keyData >= Keys.NumPad0 && keyData <= Keys.NumPad9)
+            {
+                int num = keyData - Keys.NumPad0;      // Convert Keys.NumPadX to integer
+                InputNumber(num.ToString());           // Append the number to display
+                return true;                           // Handled
+            }
+
+            // Top row numbers (0-9)
+            if (keyData >= Keys.D0 && keyData <= Keys.D9)
+            {
+                int num = keyData - Keys.D0;          // Convert Keys.DX to integer
+                InputNumber(num.ToString());          // Append the number to display
+                return true;
+            }
+
+            // 
+            // OPERATOR KEYS
+            // 
+
+            switch (keyData)
+            {
+                // ADDITION
+                case Keys.Add:            // Numpad '+'
+                case Keys.Oemplus:        // Top row '+'
+                    Add_Click(buttonAdd, EventArgs.Empty);
+                    return true;
+
+                // SUBTRACTION
+                case Keys.Subtract:       // Numpad '-'
+                case Keys.OemMinus:       // Top row '-'
+                    Sub_Click(buttonSub, EventArgs.Empty);
+                    return true;
+
+                // MULTIPLICATION
+                case Keys.Multiply:       // Numpad '*'
+                    Mult_Click(buttonMult, EventArgs.Empty);
+                    return true;
+
+                // DIVISION
+                case Keys.Divide:         // Numpad '/'
+                    Divide_Click(buttonDivide, EventArgs.Empty);
+                    return true;
+
+                // DECIMAL POINT
+                case Keys.Decimal:        // Numpad '.'
+                case Keys.OemPeriod:      // Top row '.'
+                    Decimal_Click(buttonDecimal, EventArgs.Empty);
+                    return true;
+
+                // 
+                // SPECIAL KEYS
+                // 
+
+                // ENTER key (main Enter or Numpad Enter)
+                case Keys.Enter:
+                    buttonEnter.PerformClick();  // Trigger calculation
+                    return true;
+
+                // ESCAPE key
+                case Keys.Escape:
+                    buttonClear.PerformClick();  // Clear everything
+                    return true;
+
+                // BACKSPACE key
+                case Keys.Back:
+                    if (textBoxCalculation.Text.Length > 0)
+                        textBoxCalculation.Text = textBoxCalculation.Text[..^1];  // Remove last character
+                    return true;
+            }
+
+            // 
+            // CATCH ALL
+            // 
+            // For any other keys, let the base form handle them
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        // Function for inputing numbers as a string value based off button selection
         private void InputNumber(string c)
         {
             if (textBoxCalculation.Text == "0" && textBoxCalculation.Text != null)
@@ -24,141 +113,92 @@ namespace WinFormCalculatorApp
             }
         }
 
-        private void N1_Click(object sender, EventArgs e)
+        private void Number_Click(object sender, EventArgs e)
         {
-            InputNumber("1");
+            Button btn = (Button)sender;    // Get the button that is clicked
+            InputNumber(btn.Text);          // Use the Text property as the value
         }
-
-        private void N2_Click(object sender, EventArgs e)
-        {
-            InputNumber("2");
-        }
-
-        private void N3_Click(object sender, EventArgs e)
-        {
-            InputNumber("3");
-        }
-
-        private void N4_Click(object sender, EventArgs e)
-        {
-            InputNumber("4");
-        }
-
-        private void N5_Click(object sender, EventArgs e)
-        {
-            InputNumber("5");
-        }
-
-        private void N6_Click(object sender, EventArgs e)
-        {
-            InputNumber("6");
-        }
-
-        private void N7_Click(object sender, EventArgs e)
-        {
-            InputNumber("7");
-        }
-
-        private void N8_Click(object sender, EventArgs e)
-        {
-            InputNumber("8");
-        }
-
-        private void N9_Click(object sender, EventArgs e)
-        {
-            InputNumber("9");
-        }
-
-        private void N0_Click(object sender, EventArgs e)
-        {
-            InputNumber("0");
-        }
-
+        
         private void Decimal_Click(object sender, EventArgs e)
         {
             InputNumber(".");
         }
-
-        private void Mult_Click(object sender, EventArgs e)
+        
+        // Function to set the firstNumber variable for the equation then reset the textBox to the number 0
+        private void InputOperator(string o)
         {
             firstNumber = Convert.ToDouble(textBoxCalculation.Text);
             textBoxCalculation.Text = "0";
-            operation = "*";
+            operation = o;
+        }
+
+        private void Mult_Click(object sender, EventArgs e)
+        {
+            InputOperator("*");
         }
 
         private void Divide_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
-            textBoxCalculation.Text = "0";
-            operation = "/";
+            InputOperator("/");
         }
 
         private void Sub_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
-            textBoxCalculation.Text = "0";
-            operation = "-";
+            InputOperator("-");
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
-            firstNumber = Convert.ToDouble(textBoxCalculation.Text);
-            textBoxCalculation.Text = "0";
-            operation = "+";
+            InputOperator("+");
         }
 
+        // Clears all the data stored in variables and sets textBox to display zero
         private void Clear_Click(object sender, EventArgs e)
         {
             firstNumber = 0;
             secondNumber = 0;
             result = 0;
-            operation = " ";
-            textBoxCalculation.Text = "0";
+            operation = "";
+            textBoxCalculation.Text = "";
+
+            this.ActiveControl = null; // keeps keyboard working
+
         }
 
+        // Function to check the textBox for any number that isn't zero then change the sign to positive or negative
         private void PosNeg_Click(object sender, EventArgs e)
         {
             if (textBoxCalculation.Text != "0")
             {
                 if (textBoxCalculation.Text.StartsWith('-'))
                 {
-                    charge = textBoxCalculation.Text;
-                    textBoxCalculation.Text = charge[1..];
+                    sign = textBoxCalculation.Text;
+                    textBoxCalculation.Text = sign[1..];    //removes the first character from the string
                 }
                 else
                 {
                     textBoxCalculation.Text = "-" + textBoxCalculation.Text;
                 }
             }
-            else;
             
         }
 
+        // Function to solve the equation from user input >>>!!!! Clean Up later !!!!<<<
         private void Equal_Click(object sender, EventArgs e)
         {
             secondNumber = Convert.ToDouble(textBoxCalculation.Text);
 
-
             if (operation == "+")
             {
                 result = (firstNumber + secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-                operation = " ";
             }
             if (operation == "-")
             {
                 result = (firstNumber - secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-                operation = " ";
             }
             if (operation == "*")
             {
                 result = (firstNumber * secondNumber);
-                textBoxCalculation.Text = Convert.ToString(result);
-                firstNumber = result;
-                operation = " ";
             }
             if (operation == "/")
             {
@@ -169,84 +209,12 @@ namespace WinFormCalculatorApp
                 else
                 {
                     result = (firstNumber / secondNumber);
-                    textBoxCalculation.Text = Convert.ToString(result);
-                    firstNumber = result;
-                    operation = " ";
                 }
             }
 
-        }
-
-        private void KeyboardInput(object sender, KeyEventArgs e)
-        {
-
-            if (e.KeyCode != Keys.NumPad0 && e.KeyCode != Keys.D0)
-            {
-                if (e.KeyCode == Keys.NumPad1 || e.KeyCode == Keys.D1)
-                {
-                    InputNumber("1");
-                }
-                else if (e.KeyCode == Keys.NumPad2 || e.KeyCode == Keys.D2)
-                {
-                    InputNumber("2");
-                }
-                else if (e.KeyCode == Keys.NumPad3 || e.KeyCode == Keys.D3)
-                {
-                    InputNumber("3");
-                }
-                else if (e.KeyCode == Keys.NumPad4 || e.KeyCode == Keys.D4)
-                {
-                    InputNumber("4");
-                }
-                else if (e.KeyCode == Keys.NumPad5 || e.KeyCode == Keys.D5)
-                {
-                    InputNumber("5");
-                }
-                else if (e.KeyCode == Keys.NumPad6 || e.KeyCode == Keys.D6)
-                {
-                    InputNumber("6");
-                }
-                else if (e.KeyCode == Keys.NumPad7 || e.KeyCode == Keys.D7)
-                {
-                    InputNumber("7");
-                }
-                else if (e.KeyCode == Keys.NumPad8 || e.KeyCode == Keys.D8)
-                {
-                    InputNumber("8");
-                }
-                else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
-                {
-                    InputNumber("9");
-                }
-                else if (e.KeyCode == Keys.NumPad9 || e.KeyCode == Keys.D9)
-                {
-                    InputNumber("9");
-                }
-                else if (e.KeyCode == Keys.Multiply || e.KeyCode == Keys.D9)
-                {
-                    InputNumber("*");
-                }
-                else if (e.KeyCode == Keys.Add || e.KeyCode == Keys.Oemplus)
-                {
-                    InputNumber("+");
-                }
-                else if (e.KeyCode == Keys.Subtract || e.KeyCode == Keys.OemMinus)
-                {
-                    InputNumber("-");
-                }
-                else if (e.KeyCode == Keys.Decimal || e.KeyCode == Keys.OemPeriod)
-                {
-                    InputNumber(".");
-                }
-                else if (e.KeyCode == Keys.Divide)
-                {
-                    InputNumber("/");
-                }
-            }
-            else
-            {
-                InputNumber("0");
-            }
+            textBoxCalculation.Text = Convert.ToString(result);
+            firstNumber = result;
+            operation = " ";
         }
     }
 }
